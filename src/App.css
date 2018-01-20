@@ -435,7 +435,7 @@ th {
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
+  /*animation: App-logo-spin infinite 20s linear;*/
   height: 80px;
 }
 
@@ -614,8 +614,7 @@ h6 { font-size: 1.5rem; line-height: 1.6; }
 }
 
 p {
-  margin-top: 0;
-  text-align: left;  
+  margin-top: 0;  
 }
 
 
@@ -843,11 +842,21 @@ form {
   border: 1px solid #D1D1D1;
   border-radius: 5px;
   padding: 10px;
+  text-align: center;
+}
+
+.profile-info, #testing {
+  text-align: center;
+}
+
+.content p {
+  text-align: left;
 }
 
 .profile-info img{
   width: 150px;
   border-radius: 5px;
+  
 }
 
 p.date {
@@ -860,6 +869,11 @@ p.author {
   font-size: 0.8em;
   margin-top: 0px;
   font-weight: bold;
+}
+
+p.footer {
+  text-align: right;
+  font-size: 0.8em;
 }
 
 p img {

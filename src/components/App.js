@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import logo from '../Microscope-icon.png';
 import '../App.css';
-import Profile from './Profile';
 import AddPost from './AddPost';
+import Login from './Login';
 import Post from './Post';
 import { initialPosts } from '../posts.js';
-import {guestProfile} from '../users.js';
 
 
 class App extends Component {
@@ -33,13 +32,13 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Micro Blog Clone</h1>
+          <h1 className="App-title">Micro Blog</h1>
         </header>
         <div className="container">
           <div className="row">
             <div className="four columns">
               <div className="sidebar">
-                <Profile fullName={guestProfile.fullName} userName={guestProfile.userName} profilePic={guestProfile.profilePic} userBio={guestProfile.userBio} />
+                <Login />
               </div>
             </div>
             <div className="eight columns"><div className="content">
@@ -55,6 +54,11 @@ class App extends Component {
             </div>
             </div>
 
+          </div>
+          <div className="row">
+            <div className="twelve columns">
+              <p className="footer">Avatar icon credits: <a href="http://www.freepik.com">Freepik</a> | Microscope icon credits: <a href="http://www.kameleon.pics/">Kamaleon</a></p>
+            </div>
           </div>
         </div>
       </div>
