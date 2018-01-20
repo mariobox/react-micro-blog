@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { guestProfile } from '../users.js'
+import { guestProfile } from '../users.js';
+import { newGuest } from '../users.js'
 import '../App.css';
 import Profile from './Profile';
 import ReactDOM from 'react-dom';
@@ -23,12 +24,12 @@ class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();
         document.getElementById("logInForm").style.display = 'none';
-        guestProfile['fullName'] = document.getElementById('firstName').value;
-        guestProfile['userName'] = document.getElementById('userName').value;
-        guestProfile['userBio'] = document.getElementById('userBio').value;
-        guestProfile['profilePic'] = './img/profile_image_dummy.svg';
+        newGuest['fullName'] = document.getElementById('firstName').value;
+        newGuest['userName'] = document.getElementById('userName').value;
+        newGuest['userBio'] = document.getElementById('userBio').value;
+        
         ReactDOM.render(
-            <Profile fullName={guestProfile.fullName} userName={guestProfile.userName} profilePic={guestProfile.profilePic} userBio={guestProfile.userBio} />
+            <Profile fullName={newGuest.fullName} userName={newGuest.userName} profilePic={newGuest.profilePic} userBio={newGuest.userBio} />
             , document.querySelector(".sidebar"));
     }
 
