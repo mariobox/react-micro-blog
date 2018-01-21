@@ -37,20 +37,30 @@ class App extends Component {
   }
 
   autoLogin() {
-    this.setState({ user: defaultUser });
-    ReactDOM.render(
-      <Profile fullName={defaultUser.fullName} userName={defaultUser.userName}
-        profilePic={defaultUser.profilePic} userBio={defaultUser.userBio} handleLogout={this.handleLogout} />
-      , document.querySelector(".sidebar"));
+    this.setState({ user: defaultUser }, () => {
+      ReactDOM.render(
+        <Profile
+          fullName={this.state.user.fullName}
+          userName={this.state.user.userName}
+          profilePic={this.state.user.profilePic}
+          userBio={this.state.user.userBio}
+          handleLogout={this.handleLogout} />,
+        document.querySelector(".sidebar"));
+    });
   }
 
 
   handleSubmit(event) {
     event.preventDefault();
     ReactDOM.render(
-      <Profile fullName={this.state.user.fullName} userName={this.state.user.userName}
-        profilePic={this.state.user.profilePic} userBio={this.state.user.userBio} handleLogout={this.handleLogout} />
-      , document.querySelector(".sidebar"));
+      <Profile
+        fullName={this.state.user.fullName}
+        userName={this.state.user.userName}
+        profilePic={this.state.user.profilePic}
+        userBio={this.state.user.userBio}
+        handleLogout={this.handleLogout} />,
+      document.querySelector(".sidebar")
+    );
   }
 
   addNewUser() {
@@ -63,10 +73,17 @@ class App extends Component {
   }
 
   handleLogout() {
-    this.setState({ user: initialUser })
-    ReactDOM.render(<Login name='' username=''
-      bio='' autoLogin={this.autoLogin}
-      loadNewUser={this.handleSubmit} addNewUser={this.addNewUser} />, document.querySelector(".sidebar"))
+    this.setState({ user: initialUser }, () => {
+      ReactDOM.render(
+        <Login
+          name={this.state.user.fullName}
+          username={this.state.user.userName}
+          bio={this.state.user.userBio}
+          autoLogin={this.autoLogin}
+          loadNewUser={this.handleSubmit}
+          addNewUser={this.addNewUser} />,
+        document.querySelector(".sidebar"))
+    })
   }
 
   render() {
@@ -80,28 +97,39 @@ class App extends Component {
           <div className="row">
             <div className="four columns">
               <div className="sidebar">
-                <Login name={this.state.user.fullName} username={this.state.user.userName}
-                  bio={this.state.user.userBio} autoLogin={this.autoLogin}
-                  loadNewUser={this.handleSubmit} addNewUser={this.addNewUser} />
+                <Login
+                  name={this.state.user.fullName}
+                  username={this.state.user.userName}
+                  bio={this.state.user.userBio}
+                  autoLogin={this.autoLogin}
+                  loadNewUser={this.handleSubmit}
+                  addNewUser={this.addNewUser} />
               </div>
             </div>
-            <div className="eight columns"><div className="content">
-              <AddPost addPost={this.addPostToPostList} author={this.state.user.fullName} image={this.state.user.profilePic} />
-              <div className='postList'>
-                {
-                  Object
-                    .keys(this.state.posts)
-                    .map(key => <Post key={key} meta={this.state.posts[key]} />)
-                    .reverse()
-                }
+            <div className="eight columns">
+              <div className="content">
+                <AddPost
+                  addPost={this.addPostToPostList}
+                  author={this.state.user.fullName}
+                  image={this.state.user.profilePic} />
+                <div className='postList'>
+                  {
+                    Object
+                      .keys(this.state.posts)
+                      .map(key => <Post key={key} meta={this.state.posts[key]} />)
+                      .reverse()
+                  }
+                </div>
               </div>
             </div>
-            </div>
-
           </div>
           <div className="row">
             <div className="twelve columns">
-              <p className="footer">Avatar icon credits: <a href="http://www.freepik.com">Freepik</a> | Microscope icon credits: <a href="http://www.kameleon.pics/">Kamaleon</a></p>
+              <p className="footer">
+                Avatar icon credits:
+              <a href="http://www.freepik.com">Freepik</a> |
+              Microscope icon credits:
+              <a href="http://www.kameleon.pics/">Kamaleon</a></p>
             </div>
           </div>
         </div>
