@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {guestProfile} from '../users.js'
 
 class AddPost extends Component {
 
@@ -7,11 +6,11 @@ class AddPost extends Component {
         e.preventDefault();
         var post = {
             blogPost: this.blogPost.value,
-            date: Date(),      
-            author: guestProfile.fullName,
-            image: guestProfile.profilePic
+            date: Date(),
+            author: this.props.author,
+            image: this.props.image
         };
-        this.props.addPost( post );
+        this.props.addPost(post);
         this.blogPost.value = "";
         this.blogPost.placeholder = "What are you doing?";
     }
@@ -21,9 +20,9 @@ class AddPost extends Component {
             <form onSubmit={(e) => this.addNewPost(e)}>
                 <p><textarea ref={(input) => this.blogPost = input} placeholder="What are you doing?">
                 </textarea><br />
-                <button type="submit">Post</button>
+                    <button type="submit">Post</button>
                 </p>
-                
+
             </form>
         );
     }
