@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import logo from '../Microscope-icon.png';
 import '../App.css';
 import AddPost from './AddPost';
-import Login from './Login';
-import Profile from './Profile';
+import Greeting from './Greeting'
 import Post from './Post';
 import { initialPosts } from '../posts.js';
 import { defaultUser } from '../users.js';
@@ -17,7 +15,8 @@ class App extends Component {
     super();
     this.state = {
       posts: initialPosts,
-      user: initialUser
+      user: initialUser,
+      isLoggedIn: false
     };
 
     this.addPostToPostList = this.addPostToPostList.bind(this);
@@ -25,7 +24,9 @@ class App extends Component {
     this.addNewUser = this.addNewUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    
   }
+
 
   addPostToPostList(post) {
     var ts = Date.now();
@@ -37,30 +38,16 @@ class App extends Component {
   }
 
   autoLogin() {
-    this.setState({ user: defaultUser }, () => {
-      ReactDOM.render(
-        <Profile
-          fullName={this.state.user.fullName}
-          userName={this.state.user.userName}
-          profilePic={this.state.user.profilePic}
-          userBio={this.state.user.userBio}
-          handleLogout={this.handleLogout} />,
-        document.querySelector(".sidebar"));
-    });
+    this.setState({
+      user: defaultUser,
+      isLoggedIn: true
+    })
+    
   }
-
 
   handleSubmit(event) {
     event.preventDefault();
-    ReactDOM.render(
-      <Profile
-        fullName={this.state.user.fullName}
-        userName={this.state.user.userName}
-        profilePic={this.state.user.profilePic}
-        userBio={this.state.user.userBio}
-        handleLogout={this.handleLogout} />,
-      document.querySelector(".sidebar")
-    );
+    this.setState({ isLoggedIn: true });    
   }
 
   addNewUser() {
@@ -73,19 +60,13 @@ class App extends Component {
   }
 
   handleLogout() {
-    this.setState({ user: initialUser }, () => {
-      ReactDOM.render(
-        <Login
-          name={this.state.user.fullName}
-          username={this.state.user.userName}
-          bio={this.state.user.userBio}
-          autoLogin={this.autoLogin}
-          loadNewUser={this.handleSubmit}
-          addNewUser={this.addNewUser} />,
-        document.querySelector(".sidebar"))
+    this.setState({
+      user: initialUser,
+      isLoggedIn: false
     })
   }
 
+  
   render() {
     return (
       <div className="App">
@@ -97,13 +78,18 @@ class App extends Component {
           <div className="row">
             <div className="four columns">
               <div className="sidebar">
-                <Login
-                  name={this.state.user.fullName}
-                  username={this.state.user.userName}
-                  bio={this.state.user.userBio}
-                  autoLogin={this.autoLogin}
-                  loadNewUser={this.handleSubmit}
-                  addNewUser={this.addNewUser} />
+                <Greeting 
+                status={this.state.isLoggedIn}
+                fullname={this.state.user.fullName}
+                username={this.state.user.userName}
+                profilepic={this.state.user.profilePic}
+                userbio={this.state.user.userBio}
+                handleLogout={this.handleLogout}
+                autoLogin={this.autoLogin}
+                handleSubmit={this.handleSubmit}
+                addNewUser={this.addNewUser}     
+                           
+                 />
               </div>
             </div>
             <div className="eight columns">

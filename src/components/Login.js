@@ -9,7 +9,7 @@ class Login extends Component {
                 <form id="logInForm" onSubmit={this.props.loadNewUser}>
                     <label>
                         Name:
-              <input type="text" id="fullName" name={this.props.name} onChange={this.props.addNewUser} />
+              <input type="text" id="fullName" fullname={this.props.name} onChange={this.props.addNewUser} />
                     </label>
                     <label>
                         User name:
@@ -17,7 +17,7 @@ class Login extends Component {
                     </label>
                     <label>
                         About yourself:
-              <input type="text" id="userBio" bio={this.props.bio} onChange={this.props.addNewUser} />
+              <input type="text" id="userBio" userbio={this.props.bio} onChange={this.props.addNewUser} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
