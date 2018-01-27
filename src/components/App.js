@@ -24,9 +24,8 @@ class App extends Component {
     this.addNewUser = this.addNewUser.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    
-  }
 
+  }
 
   addPostToPostList(post) {
     var ts = Date.now();
@@ -42,22 +41,25 @@ class App extends Component {
       user: defaultUser,
       isLoggedIn: true
     })
-    
+
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.setState({ isLoggedIn: true });    
+    this.setState({ isLoggedIn: true });
   }
 
-  addNewUser() {
-    var newUser = {};
-    newUser.fullName = document.getElementById('fullName').value;
-    newUser.userName = document.getElementById('userName').value;
-    newUser.userBio = document.getElementById('userBio').value;
-    newUser.profilePic = './img/profile_image_dummy.svg';
-    this.setState({ user: newUser });
+  addNewUser(event) {
+    const user = this.state.user;
+    const value = event.target.value;
+    const name = event.target.name;
+    user[name] = value;
+
+    this.setState({
+      user
+    });
   }
+
 
   handleLogout() {
     this.setState({
@@ -66,7 +68,7 @@ class App extends Component {
     })
   }
 
-  
+
   render() {
     return (
       <div className="App">
@@ -78,18 +80,18 @@ class App extends Component {
           <div className="row">
             <div className="four columns">
               <div className="sidebar">
-                <Greeting 
-                status={this.state.isLoggedIn}
-                fullname={this.state.user.fullName}
-                username={this.state.user.userName}
-                profilepic={this.state.user.profilePic}
-                userbio={this.state.user.userBio}
-                handleLogout={this.handleLogout}
-                autoLogin={this.autoLogin}
-                handleSubmit={this.handleSubmit}
-                addNewUser={this.addNewUser}     
-                           
-                 />
+                <Greeting
+                  status={this.state.isLoggedIn}
+                  fullname={this.state.user.fullName}
+                  username={this.state.user.userName}
+                  profilepic={this.state.user.profilePic}
+                  userbio={this.state.user.userBio}
+                  handleLogout={this.handleLogout}
+                  autoLogin={this.autoLogin}
+                  handleSubmit={this.handleSubmit}
+                  addNewUser={this.addNewUser}
+
+                />
               </div>
             </div>
             <div className="eight columns">

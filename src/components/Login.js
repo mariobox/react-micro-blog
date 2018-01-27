@@ -9,15 +9,15 @@ class Login extends Component {
                 <form id="logInForm" onSubmit={this.props.loadNewUser}>
                     <label>
                         Name:
-              <input type="text" id="fullName" fullname={this.props.name} onChange={this.props.addNewUser} />
+              <input type="text" name="fullName" fullname={this.props.fullname} onChange={this.props.addNewUser} />
                     </label>
                     <label>
                         User name:
-              <input type="text" id="userName" username={this.props.username} onChange={this.props.addNewUser} />
+              <input type="text" name="userName" username={this.props.username} onChange={this.props.addNewUser} />
                     </label>
                     <label>
                         About yourself:
-              <input type="text" id="userBio" userbio={this.props.bio} onChange={this.props.addNewUser} />
+              <input type="text" name="userBio" userbio={this.props.userbio} onChange={this.props.addNewUser} />
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
